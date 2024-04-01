@@ -28,7 +28,7 @@ sinks:
   print:
     type: "file"
     inputs: ["parse_logs"]
-    path: /root/vector/vector_data.txt
+    path: /root/vector_data.txt
     encoding:
       codec: "json"
 
