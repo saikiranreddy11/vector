@@ -16,12 +16,12 @@ sources:
 
 # Parse Syslog logs
 # See the Vector Remap Language reference for more info: https://vrl.dev
-# transforms:
-#   parse_logs:
-#     type: "remap"
-#     inputs: ["dummy_logs"]
-#     source: |
-#       . = parse_syslog!(string!(.message))
+transforms:
+  parse_logs:
+    type: "remap"
+    inputs: ["dummy_logs"]
+    source: |
+      . = parse_syslog!(string!(.message))
 
 # Print parsed logs to stdout
 sinks:
