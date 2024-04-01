@@ -26,8 +26,9 @@ transforms:
 # Print parsed logs to stdout
 sinks:
   print:
-    type: "console"
+    type: "file"
     inputs: ["parse_logs"]
+    path: /root/vector/vector_data.txt
     encoding:
       codec: "json"
 
