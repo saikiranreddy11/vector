@@ -27,7 +27,7 @@ transforms:
 sinks:
   print:
     type: "console"
-    inputs: ["dummy_logs"]
+    inputs: ["parse_logs"]
     encoding:
       codec: "json"
 
