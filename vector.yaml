@@ -46,7 +46,7 @@ transforms:
         },case_sensitive: false
       )
      # . = merge_objects!(., lets_enrich)
-    .message = (.message + " | Enriched: " + lets_enrich)
+   # .message = (.message + " | Enriched: " + lets_enrich)
 
 # Print parsed logs to stdout
 sinks:
