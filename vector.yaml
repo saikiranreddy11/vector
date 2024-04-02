@@ -42,7 +42,7 @@ transforms:
       lets_enrich = find_enrichment_table_records!(
         "flight_data",
         {
-          "Flight_number": "UAL123"
+          "flight_number": "UAL123"
         },case_sensitive: false
       )
      # . = merge_objects!(., lets_enrich)
