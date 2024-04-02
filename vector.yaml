@@ -45,7 +45,7 @@ transforms:
           "flight_number": "UAL123"
         },case_sensitive: false
       )
-      . = lets_enrich
+      . = .+lets_enrich
      # . = merge_objects!(., lets_enrich)
    # .message = (.message + " | Enriched: " + lets_enrich)
 
