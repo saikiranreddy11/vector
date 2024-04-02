@@ -21,7 +21,7 @@ transforms:
     type: "remap"
     inputs: ["dummy_logs"]
     source: |
-      . = parse_syslog!(string!(.message))
+      . = parse_key_value!(.message)
 
 # Print parsed logs to stdout
 sinks:
