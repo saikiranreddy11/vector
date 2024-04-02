@@ -45,7 +45,10 @@ transforms:
           "flight_number": "UAL123"
         },case_sensitive: false
       )
-      . = .+lets_enrich
+      ., err = .+lets_enrich
+      match err
+        null => (),
+        _ => panic("Failed to merge objects: " + err)
      # . = merge_objects!(., lets_enrich)
    # .message = (.message + " | Enriched: " + lets_enrich)
 
