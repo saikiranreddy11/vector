@@ -12,7 +12,7 @@ enrichment_tables:
   flight_data:
     type: "file"
     file:
-      path: "/etc/vector/flight_data.csv"
+      path: "/root/vector/flight_data.csv"
       encoding:
         type: "csv"
     schema:
