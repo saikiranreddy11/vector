@@ -35,16 +35,16 @@ transforms:
     source: |
       . = parse_syslog!(.message)
 
-  # enrich_logs:
-  #   type: "remap"
-  #   inputs: ["parse_logs"]
-  #   source: |
-  #     lets_enrich = find_enrichment_table_records!(
-  #       "flight_data",
-  #       {
-  #         "Flight_number": "UAL123"
-  #       },case_sensitive: false
-  #     )
+  enrich_logs:
+    type: "remap"
+    inputs: ["parse_logs"]
+    source: |
+      lets_enrich = find_enrichment_table_records!(
+        "flight_data",
+        {
+          "Flight_number": "UAL123"
+        },case_sensitive: false
+      )
      # . = merge_objects!(., lets_enrich)
     #.message = (.message + " | Enriched: " + lets_enrich)
 
@@ -52,7 +52,7 @@ transforms:
 sinks:
   print:
     type: "console"
-    inputs: ["parse_logs"]
+    inputs: ["enich_logs"]
     #path: /root/vector_data.txt
     encoding:
       codec: "json"
