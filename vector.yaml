@@ -8,6 +8,18 @@
 # data_dir: "/var/lib/vector"
 
 # Random Syslog-formatted logs
+enrichment_tables:
+  flight_data:
+    type: "file"
+    file:
+      path: "/etc/vector/flight_data.csv"
+      encoding:
+        type: "csv"
+    schema:
+      flight_number: "string"
+      destination: "string"
+      captain: "string"
+
 sources:
   dummy_logs:
     type: "demo_logs"
@@ -21,14 +33,27 @@ transforms:
     type: "remap"
     inputs: ["dummy_logs"]
     source: |
-      . = parse_key_value!(.message)
+      . = parse_syslog!(.message)
+
+  enrich_logs:
+    type: "remap"
+    inputs: ["parse_logs"]
+    source: |
+      lets_enrich = find_enrichment_table_records!(
+        "flight_data",
+        {
+          "Flight_number": "UAL123"
+        },case_sensitive: false
+      )
+     # . = merge_objects!(., lets_enrich)
+    .message = (.message + " | Enriched: " + lets_enrich)
 
 # Print parsed logs to stdout
 sinks:
   print:
-    type: "file"
-    inputs: ["parse_logs"]
-    path: /root/vector_data.txt
+    type: "console"
+    inputs: ["enrich_logs"]
+    #path: /root/vector_data.txt
     encoding:
       codec: "json"
 
