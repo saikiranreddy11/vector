@@ -52,7 +52,7 @@ transforms:
 sinks:
   print:
     type: "console"
-    inputs: ["enich_logs"]
+    inputs: ["enrich_logs"]
     #path: /root/vector_data.txt
     encoding:
       codec: "json"
